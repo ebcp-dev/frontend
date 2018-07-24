@@ -1,3 +1,13 @@
 .login-errors {
   color: red;
 }
+
+#main-container {
+  margin-top: 10em;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: whitesmoke;
+}

@@ -23,12 +23,14 @@ class Register extends Component {
   componentDidMount() {
     // Redirect to logged in page
     if (this.props.auth.isAuthenticated) {
+      this.setState({ loading: true });
       this.props.history.push('/loggedin');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
+      this.setState({ loading: true });
       this.props.history.push('/loggedin');
     }
 
@@ -43,14 +45,19 @@ class Register extends Component {
       password: values.password,
       password2: values.password2
     };
-    this.setState({ loading: true });
     // Pass-in input to registerUser with history to redirect on succesful registration
     this.props.registerUser(registerInput, this.props.history);
   };
   render() {
     let { errors, loading } = this.state;
     return (
-      <RegisterForm onSubmit={this.submit} loading={loading} errors={errors} />
+      <div className="container">
+        <RegisterForm
+          onSubmit={this.submit}
+          loading={loading}
+          errors={errors}
+        />
+      </div>
     );
   }
 }

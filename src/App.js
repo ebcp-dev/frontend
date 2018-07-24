@@ -7,6 +7,7 @@ import setAuthToken from './utils/setAuthToken';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import Landing from './components/Landing';
 import Login from './components/auth/Login';
 import LoggedIn from './components/auth/LoggedIn';
 import Register from './components/register/Register';
@@ -38,8 +39,9 @@ class App extends Component {
       <div>
         <Provider store={store}>
           <Router>
-            <div>
-              <Route exact path="/" component={Login} />
+            <div id="main-container" className="text-center">
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Register} />
               <Route exact path="/loggedin" component={LoggedIn} />
             </div>

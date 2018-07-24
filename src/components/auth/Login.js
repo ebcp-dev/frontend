@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
+import { Link } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
 
@@ -20,14 +21,16 @@ class Login extends Component {
   }
 
   componentDidMount() {
+    // Redirect to logged in page
     if (this.props.auth.isAuthenticated) {
+      this.setState({ loading: true });
       this.props.history.push('/loggedin');
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    // Redirect to logged in page
     if (nextProps.auth.isAuthenticated) {
+      this.setState({ loading: true });
       this.props.history.push('/loggedin');
     }
 
@@ -41,14 +44,16 @@ class Login extends Component {
       email: values.email,
       password: values.password
     };
-    this.setState({ loading: true });
     // Login user action
     this.props.loginUser(userInput);
   };
   render() {
     let { errors, loading } = this.state;
     return (
-      <LoginForm onSubmit={this.submit} loading={loading} errors={errors} />
+      <div className="container">
+        <Link to="/"> </Link>
+        <LoginForm onSubmit={this.submit} loading={loading} errors={errors} />
+      </div>
     );
   }
 }
