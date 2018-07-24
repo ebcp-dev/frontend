@@ -1,31 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import { setCurrentUser, logoutUser } from './actions/authActions';
+import setAuthToken from './utils/setAuthToken';
+
+import { Provider } from 'react-redux';
+import store from './store';
+
+import Login from './components/auth/Login';
+import LoggedIn from './components/auth/LoggedIn';
+import Register from './components/register/Register';
+
 import './App.css';
 
-import { connect } from 'react-redux';
-import { defaultFunction } from './actions';
+// Check for authorization token for every request
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token and get user info and expiration
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to login
+    window.location.href = '/login';
+  }
+}
 
 class App extends Component {
-
-  componentDidMount() {
-    // call default function to display redux operation
-    this.props.defaultFunction();
-  }
-
   render() {
     return (
       <div>
-        React Redux Starter Template
+        <Provider store={store}>
+          <Router>
+            <div>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/signup" component={Register} />
+              <Route exact path="/loggedin" component={LoggedIn} />
+            </div>
+          </Router>
+        </Provider>
       </div>
     );
   }
 }
 
-// function to convert the global state obtained from redux to local props
-function mapStateToProps(state) {
-  return {
-    default: state.default
-  };
-}
-
-export default connect(mapStateToProps, { defaultFunction })(App);
+export default App;

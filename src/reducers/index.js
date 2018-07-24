@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
+import authReducer from './authReducer';
+import errorReducer from './errorReducer';
+import { reducer as formReducer } from 'redux-form';
 
-// calling the default reducer to create a link
-import defaultReducer from './default-reducer';
-
-const rootReducers = combineReducers({
-    // add reducer files references here
-    default: defaultReducer
+export default combineReducers({
+  auth: authReducer,
+  errors: errorReducer,
+  form: formReducer
 });
-
-export default rootReducers;

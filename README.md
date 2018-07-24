@@ -1,3 +1,3 @@
-#### React Redux Starter Template
+#### React/Redux Frontend for the Hackerbay University project
 
-This project contains a boilerplate template created from the create-react-app library and configured along with redux.
+Created with React, Redux, ReduxForm. Connects to the Express/Postgres api.
