@@ -53,6 +53,11 @@ class Login extends Component {
       <div className="container">
         <Link to="/"> </Link>
         <LoginForm onSubmit={this.submit} loading={loading} errors={errors} />
+        <Link to="/">
+          <button type="button" className="btn btn-dark">
+            Back Home
+          </button>
+        </Link>
       </div>
     );
   }

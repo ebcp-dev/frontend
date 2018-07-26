@@ -21,21 +21,22 @@ class LoggedIn extends Component {
       return (
         <div>
           <h4>Welcome {auth.user.email}</h4>
-          <button type="button" className="btn btn-dark">
-            <Link to="/" onClick={this.onLogoutClick}>
+          <Link to="/" onClick={this.onLogoutClick}>
+            <button type="button" className="btn btn-dark">
               Log Out
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       );
     }
     return (
       <div>
         <h4>You are not authenticated.</h4>
-
-        <button type="button" className="btn btn-dark">
-          <Link to="/">Home</Link>
-        </button>
+        <Link to="/">
+          <button type="button" className="btn btn-dark">
+            Home
+          </button>
+        </Link>
       </div>
     );
   }

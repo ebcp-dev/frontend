@@ -39,12 +39,10 @@ class App extends Component {
       <div>
         <Provider store={store}>
           <Router>
-            <div id="main-container" className="text-center">
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Register} />
-              <Route exact path="/loggedin" component={LoggedIn} />
-            </div>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Register} />
+            <Route exact path="/loggedin" component={LoggedIn} />
           </Router>
         </Provider>
       </div>

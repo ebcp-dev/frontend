@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
 import Spinner from 'react-spinkit';
 
 let RegisterForm = props => {
@@ -46,15 +45,12 @@ let RegisterForm = props => {
             )}
           </div>
           <br />
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-lg btn-primary" type="submit">
             Submit
           </button>
           {loading && <Spinner name="circle" />}
         </div>
       </form>
-      <button type="button" className="btn btn-dark">
-        <Link to="/">Back Home</Link>
-      </button>
     </div>
   );
 };
